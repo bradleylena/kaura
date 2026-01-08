@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mood Garden</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Welcome -->
+    <section id="welcome" aria-label="Welcome">
+      <div class="welcome-card">
+        <h1>Mood Garden</h1>
+        <p class="welcome-sub">
+          A quiet space to feel, reflect, and let things exist.
+        </p>
+
+        <nav class="action-cards" aria-label="Actions">
+          <button class="action-card" data-action="plant">
+            🌸 <span>Plant a feeling</span>
+          </button>
+          <button class="action-card" data-action="journal">
+            📝
+            <span>Let it out</span>
+          </button>
+          <button class="action-card" data-action="breathe">
+            🌬️ <span>Breathe</span>
+          </button>
+          <button class="action-card" data-action="days">
+            📅 <span>Past days</span>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- App -->
+    <main class="app" aria-label="Mood Garden App">
+      <header class="app-header">
+        <button class="back-btn" id="backFromApp">Back</button>
+
+        <h2 id="currentDay">Today</h2>
+
+        <div class="day-nav">
+          <button id="prevDay" class="day-btn">‹</button>
+          <button id="nextDay" class="day-btn">›</button>
+        </div>
+      </header>
+
+      <section class="journal-panel">
+        <div class="book">
+          <textarea
+            id="journal"
+            placeholder="Write anything. No one is watching."
+          ></textarea>
+        </div>
+      </section>
+
+      <section class="mood-bar" aria-label="Mood selection">
+        <button data-mood="calm">Calm</button>
+        <button data-mood="happy">Happy</button>
+        <button data-mood="heavy">Heavy</button>
+        <button data-mood="love">Loved</button>
+        <button id="letGo" aria-label="Undo last plant">Let go</button>
+      </section>
+
+      <section id="garden" aria-label="Garden"></section>
+    </main>
+    <!-- Breathing -->
+    <section id="breathe" aria-label="Breathing">
+      <div class="breathe-card">
+        <div class="breathe-circle"></div>
+        <p id="breathe-text">Inhale</p>
+        <button id="exitBreathe">Back</button>
+      </div>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
