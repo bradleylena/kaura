@@ -1,6 +1,4 @@
-/* ===============================
-   CORE REFERENCES
-=============================== */
+
 const app = document.querySelector(".app");
 const welcome = document.getElementById("welcome");
 const garden = document.getElementById("garden");
@@ -11,10 +9,6 @@ const letGoBtn = document.getElementById("letGo");
 const currentDayEl = document.getElementById("currentDay");
 const prevDayBtn = document.getElementById("prevDay");
 const nextDayBtn = document.getElementById("nextDay");
-
-/* ===============================
-   STATE
-=============================== */
 let activeMood = null;
 let dayOffset = 0;
 
@@ -24,10 +18,6 @@ const MOODS = {
   heavy: { color: "#a8d5ba", shape: "leaf" },
   love: { color: "#e68aa4", shape: "heart" },
 };
-
-/* ===============================
-   HELPERS
-=============================== */
 function selectMood(mood) {
   activeMood = mood;
   moodButtons.forEach((btn) =>
@@ -56,10 +46,6 @@ function getDayLabel(offset = 0) {
     day: "numeric",
   });
 }
-
-/* ===============================
-   WELCOME FLOW (SINGLE SOURCE)
-=============================== */
 document.querySelectorAll(".action-card").forEach((card) => {
   card.addEventListener("click", () => {
     welcome.style.display = "none";
@@ -84,10 +70,6 @@ document.querySelectorAll(".action-card").forEach((card) => {
     }
   });
 });
-
-/* ===============================
-   LOAD DAY
-=============================== */
 function loadDay() {
   const key = getDayKey(dayOffset);
 
@@ -102,10 +84,6 @@ function loadDay() {
   const plants = JSON.parse(localStorage.getItem(`garden-${key}`) || "[]");
   plants.forEach((p) => renderPlant(p.x, p.y, p.mood, false));
 }
-
-/* ===============================
-   DAY NAVIGATION
-=============================== */
 if (prevDayBtn && nextDayBtn) {
   prevDayBtn.addEventListener("click", () => {
     dayOffset--;
@@ -117,27 +95,15 @@ if (prevDayBtn && nextDayBtn) {
     loadDay();
   });
 }
-
-/* ===============================
-   JOURNAL
-=============================== */
 journal.addEventListener("input", () => {
   localStorage.setItem(`journal-${getDayKey(dayOffset)}`, journal.value);
 });
-
-/* ===============================
-   MOOD SELECTION
-=============================== */
 moodButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     app.classList.remove("writing");
     selectMood(btn.dataset.mood);
   });
 });
-
-/* ===============================
-   GARDEN INTERACTION
-=============================== */
 garden.addEventListener("click", (e) => {
   if (!activeMood) return;
 
@@ -163,10 +129,6 @@ function renderPlant(x, y, mood, save) {
   data.push({ x, y, mood });
   localStorage.setItem(`garden-${key}`, JSON.stringify(data));
 }
-
-/* ===============================
-   LET GO (UNDO)
-=============================== */
 letGoBtn.addEventListener("click", () => {
   const key = getDayKey(dayOffset);
   const data = JSON.parse(localStorage.getItem(`garden-${key}`) || "[]");
@@ -179,14 +141,7 @@ letGoBtn.addEventListener("click", () => {
   const plants = garden.querySelectorAll(".plant");
   plants[plants.length - 1]?.remove();
 });
-
-/* ===============================
-   INIT
-=============================== */
 loadDay();
-/* ===============================
-   BREATHING
-=============================== */
 const breatheScreen = document.getElementById("breathe");
 const breatheText = document.getElementById("breathe-text");
 const exitBreathe = document.getElementById("exitBreathe");
@@ -237,9 +192,7 @@ document.querySelectorAll(".action-card").forEach((card) => {
 });
 
 exitBreathe.addEventListener("click", stopBreathing);
-/* ===============================
-   GLOBAL BACK NAVIGATION
-=============================== */
+
 const backFromApp = document.getElementById("backFromApp");
 
 function goToWelcome() {
